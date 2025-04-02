@@ -88,7 +88,7 @@ class UaePassAPI {
               urlScheme: _appScheme,
               isProduction: _isProduction,
             ),
-            fullscreenDialog: fullscreen,
+            fullscreenDialog: true,
           ),
         );
       }
