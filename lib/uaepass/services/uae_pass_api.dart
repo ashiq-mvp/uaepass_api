@@ -80,7 +80,7 @@ class UaePassAPI {
     try {
       String url = await _getURL();
       if (context.mounted) {
-        return await Navigator.push(
+        return await Navigator.of(context, rootNavigator: true).push(
           context,
           MaterialPageRoute(
             builder: (context) => UaePassLoginView(
