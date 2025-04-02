@@ -81,7 +81,6 @@ class UaePassAPI {
       String url = await _getURL();
       if (context.mounted) {
         return await Navigator.of(context, rootNavigator: true).push(
-          context,
           MaterialPageRoute(
             builder: (context) => UaePassLoginView(
               url: url,
