@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uaepass_api/uaepass_api.dart';
+import 'package:uaepass_api/uaepass/services/uae_pass_api.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
   UAEPASSUserProfile? _user;
   void _loginOrLogout() async {
     UaePassAPI uaePassAPI = UaePassAPI(
+      
+
         clientId: "sandbox_stage",
         redirectUri: "https://oauthtest.com/authorization/return",
         clientSecrete: "sandbox_stage",
@@ -52,14 +55,12 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       String? code = await uaePassAPI.signIn(context);
 
-      if (code != null) {
-        _token = await uaePassAPI.getAccessToken(code);
+      _token = await uaePassAPI.getAccessToken(code);
 
-        if (_token != null) {
-          _user = await uaePassAPI.getUserProfile(_token!);
-        }
-      } else {}
-      setState(() {});
+      if (_token != null) {
+        _user = await uaePassAPI.getUserProfile(_token!);
+      }
+          setState(() {});
     } catch (e, s) {
       // print(e);
       // print(s);
@@ -87,14 +88,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             if (_token != null)
               ListTile(
-                title: Text("Token:"),
+                title: const Text("Token:"),
                 subtitle: Text("$_token"),
               ),
             if (_user != null)
               Column(
                 children: [
                   ListTile(
-                    title: Text("Full name:"),
+                    title: const Text("Full name:"),
                     subtitle:
                         Text("${_user?.firstnameEN} ${_user?.lastnameEN}"),
                   ),
