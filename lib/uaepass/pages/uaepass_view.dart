@@ -31,6 +31,7 @@ class _UaePassLoginViewState extends State<UaePassLoginView> {
   @override
   void dispose() {
     subscription.cancel();
+    webViewController?.dispose();
     super.dispose();
   }
 

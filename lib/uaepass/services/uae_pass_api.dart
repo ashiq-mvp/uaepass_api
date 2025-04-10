@@ -83,6 +83,7 @@ class UaePassAPI {
         return await Navigator.of(context, rootNavigator: true).push(
           MaterialPageRoute(
             builder: (context) => UaePassLoginView(
+              key: UniqueKey(),
               url: url,
               urlScheme: _appScheme,
               isProduction: _isProduction,
