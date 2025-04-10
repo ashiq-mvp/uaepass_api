@@ -32,13 +32,12 @@ class _UaePassLoginViewState extends State<UaePassLoginView> {
   void dispose() {
     subscription.cancel();
     webViewController?.clearCache();
-    webViewController = null; // 
+    webViewController = null;
     super.dispose();
   }
 
   @override
   void initState() {
-     InAppWebViewController.clearAllCache();
     super.initState();
 
     subscription = FGBGEvents.instance.stream.listen((event) {
@@ -67,7 +66,7 @@ class _UaePassLoginViewState extends State<UaePassLoginView> {
             supportZoom: false,
             useShouldOverrideUrlLoading: true),
         onWebViewCreated: (controller) async {
-          //await InAppWebViewController.clearAllCache();
+          await InAppWebViewController.clearAllCache();
           webViewController = controller;
           webViewController?.loadUrl(
               urlRequest: URLRequest(url: WebUri.uri(Uri.parse(widget.url))));
