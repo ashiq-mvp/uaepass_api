@@ -31,6 +31,8 @@ class _UaePassLoginViewState extends State<UaePassLoginView> {
   @override
   void dispose() {
     subscription.cancel();
+    webViewController?.clearCache();
+    webViewController = null;
     super.dispose();
   }
 
@@ -57,6 +59,7 @@ class _UaePassLoginViewState extends State<UaePassLoginView> {
     return Scaffold(
       //    appBar: buildAppBar(context),
       body: InAppWebView(
+        key: UniqueKey(),
         initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse(widget.url))),
         initialSettings: InAppWebViewSettings(
             transparentBackground: true,
